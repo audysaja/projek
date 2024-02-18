@@ -14,10 +14,10 @@ if (isset($_POST['insertbarang'])) {
 
     $tambahbarang = mysqli_query($conn, "INSERT INTO barang (id_barang, nama_barang, harga, stok) VALUES ('$id_barang', '$nama_barang', '$harga', '$stok')");
     if ($tambahbarang) {
-        header('location:index.php');
+        header('location:home.php');
     } else {
         echo "gagal";
-        header('location:index.php');
+        header('location:home.php');
     }
 }
 
@@ -31,10 +31,10 @@ if (isset($_POST['updatebarang'])) {
 
     $updatebarang = mysqli_query($conn, "UPDATE barang SET id_barang='$id_barang', nama_barang='$nama_barang', harga='$harga', stok='$stok' WHERE barang. id_barang='$id_barang' ");
     if ($updatebarang) {
-        header('location:index.php');
+        header('location:home.php');
     } else {
         echo "gagal";
-        header('location:index.php');
+        header('location:home.php');
     }
 }
 
@@ -44,10 +44,10 @@ if (isset($_POST['delete_barang'])) {
 
     $delete_barang = mysqli_query($conn, "DELETE FROM barang WHERE id_barang='$id_barang' ");
     if ($delete_barang) {
-        header('location:index.php');
+        header('location:home.php');
     } else {
         echo "gagal";
-        header('location:index.php');
+        header('location:home.php');
     }
 }
 

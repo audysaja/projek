@@ -1,6 +1,7 @@
 <?php
 require 'function.php';
 date_default_timezone_set("Asia/Jakarta");
+if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) 
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +17,9 @@ date_default_timezone_set("Asia/Jakarta");
 </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php">toko hahahihi</a>
+        <a class="navbar-brand" href="index.php">tokoQuee</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" onclick="opensidenav()"><i class="fas fa-bars"></i></button>
+        <a><font color="white">Hello!!, Selamat Datang <?php echo $_SESSION['name']; ?></font></a>
     </nav> 
     <script>
         function opensidenav(){
@@ -31,7 +33,7 @@ date_default_timezone_set("Asia/Jakarta");
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link" href="index.php">
+                        <a class="nav-link" href="home.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
                             Barang
                         </a>
@@ -42,6 +44,10 @@ date_default_timezone_set("Asia/Jakarta");
                         <a class="nav-link" href="tambah_transaksi.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-credit-card"></i></div>
                             Tambah Transaksi
+                        </a>
+                        <a class="nav-link" href="logout.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
+                            Logout
                         </a>
                     </div>
                 </div>

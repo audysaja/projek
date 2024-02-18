@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 20, 2023 at 05:34 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: localhost:3306
+-- Generation Time: Feb 18, 2024 at 05:49 PM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `barang` (
-  `id_barang` int(11) NOT NULL,
-  `nama_barang` varchar(30) NOT NULL,
-  `harga` int(10) NOT NULL,
-  `stok` int(4) NOT NULL
+  `id_barang` int NOT NULL,
+  `nama_barang` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `harga` int NOT NULL,
+  `stok` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -39,10 +39,8 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `nama_barang`, `harga`, `stok`) VALUES
-(1001, 'roti tawar', 15000, 44),
-(1002, 'mie instan', 3500, 86),
-(1003, 'dimsum', 10000, 34),
-(1004, 'es coklat', 8000, 45);
+(1529, 'buku', 5499, 35),
+(2049, 'penggaris', 5000, 35);
 
 -- --------------------------------------------------------
 
@@ -51,13 +49,13 @@ INSERT INTO `barang` (`id_barang`, `nama_barang`, `harga`, `stok`) VALUES
 --
 
 CREATE TABLE `dtl_transaksi` (
-  `id` int(11) NOT NULL,
-  `id_transaksi` int(11) DEFAULT NULL,
-  `id_barang` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `id_transaksi` int DEFAULT NULL,
+  `id_barang` int NOT NULL,
   `tanggal` date NOT NULL,
-  `harga` int(6) NOT NULL,
-  `jumlah` int(3) NOT NULL,
-  `total` int(6) NOT NULL
+  `harga` int NOT NULL,
+  `jumlah` int NOT NULL,
+  `total` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -65,8 +63,8 @@ CREATE TABLE `dtl_transaksi` (
 --
 
 INSERT INTO `dtl_transaksi` (`id`, `id_transaksi`, `id_barang`, `tanggal`, `harga`, `jumlah`, `total`) VALUES
-(1, NULL, 1001, '0000-00-00', 0, 2, 0),
-(2, NULL, 1003, '0000-00-00', 0, 1, 0);
+(8, 8038, 1529, '2024-02-18', 5499, 5, 27495),
+(9, 8038, 2049, '2024-02-18', 5000, 5, 25000);
 
 -- --------------------------------------------------------
 
@@ -75,10 +73,32 @@ INSERT INTO `dtl_transaksi` (`id`, `id_transaksi`, `id_barang`, `tanggal`, `harg
 --
 
 CREATE TABLE `transaksi` (
-  `id_transaksi` int(6) NOT NULL,
+  `id_transaksi` int NOT NULL,
   `tanggal` date NOT NULL,
-  `total` int(6) NOT NULL
+  `total` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `user_name`, `password`, `name`) VALUES
+(3, 'ela', '202cb962ac59075b964b07152d234b70', 'Ela'),
+(4, 'elias', '202cb962ac59075b964b07152d234b70', 'elias'),
+(5, 'audy', '202cb962ac59075b964b07152d234b70', 'audy');
 
 --
 -- Indexes for dumped tables
@@ -104,6 +124,12 @@ ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_transaksi`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -111,7 +137,13 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `dtl_transaksi`
 --
 ALTER TABLE `dtl_transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
